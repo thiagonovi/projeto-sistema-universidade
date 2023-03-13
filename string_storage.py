@@ -15,11 +15,11 @@ data_menu_string = """O que você deseja fazer com esses dados?
             [d] Alterar"""
 
 estudante_blank = """
-{
-    "estudantes": [
+[
+    
         
-    ]
-}
+    
+]
 
 """
 

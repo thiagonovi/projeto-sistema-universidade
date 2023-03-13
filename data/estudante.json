@@ -1,1 +1,26 @@
-
+[
+  {
+    "nome": "a",
+    "idade": "a",
+    "curso": "a",
+    "telefone": "a",
+    "e-mail": "a",
+    "media": "a"
+  },
+  {
+    "nome": "b",
+    "idade": "b",
+    "curso": "b",
+    "telefone": "b",
+    "e-mail": "b",
+    "media": "b"
+  },
+  {
+    "nome": "c",
+    "idade": "c",
+    "curso": "c",
+    "telefone": "c",
+    "e-mail": "c",
+    "media": "c"
+  }
+]

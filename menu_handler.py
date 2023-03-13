@@ -29,6 +29,8 @@ def ultimate_menu_handler(answear1, answear2):
         data = "data/estudante.json"
         if answear2 == 'a':
             insert_data_estudante(data)
+        elif answear2 == 'b':
+            list_data(data) # to create
     elif answear1 == 'b':
         data = "data/disciplina.json"
     elif answear1 == 'c':
