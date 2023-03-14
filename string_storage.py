@@ -14,6 +14,8 @@ data_menu_string = """O que você deseja fazer com esses dados?
             [c] Excluir
             [d] Alterar"""
 
+incorrect_option = "Opção Inválida. Por favor, selecione uma das opções abaixo\n"
+
 estudante_blank = """
 [
     

@@ -53,7 +53,13 @@ def list_data(archive):
             print(f"{key.capitalize()}: {value}")
         i += 1
 
-
+def exclude_data(data):
+    with open(archive) as f:
+            data = json.load(f)
+    
+    print("Qual o nome do estudante que você deseja excluir do sistema?")
+    nome = input(prompt)
+    print(data.index(f"'nome': '{nome}'"))
 
 
 
