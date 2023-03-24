@@ -1,5 +1,6 @@
 import os, json
 from string_storage import prompt, estudante_blank, estudante_object_blank
+from menu import clear
 
 
 def insert_data_estudante(archive):
@@ -42,16 +43,25 @@ def insert_data_estudante(archive):
     with open(archive, "w") as f:
         json.dump(data, f, indent=2)
 
-def list_data(archive):
-    with open(archive) as f:
-        data = json.load(f)
+    clear()
+    print("Estudante inserido no sistema com sucesso")
 
-    i = 0
-    for estudantes in data:
-        print(f"\nEstudante n. {i+1}\n")
-        for key, value in data[i].items():
-            print(f"{key.capitalize()}: {value}")
-        i += 1
+def list_data(archive):
+    clear()
+    with open(archive) as f:
+        if len(f.read()) <= 1:
+            print("Nenhum estudante listado no sistema")
+        else:
+            with open(archive) as f:
+                data = json.load(f)
+                i = 0
+                print("***************")
+                for estudantes in data:
+                    print(f"\nEstudante n. {i+1}\n")
+                    for key, value in data[i].items():
+                        print(f"{key.capitalize()}: {value}")
+                    i += 1
+                print("\n***************\n")
 
 def exclude_data(data):
     with open(archive) as f:

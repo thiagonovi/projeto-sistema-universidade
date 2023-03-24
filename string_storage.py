@@ -11,7 +11,7 @@ menu_string = """Bem vindo ao sistema da Universidade. O que deseja acessar?
             [f] Sair do sistema
             """
 
-data_menu_string = """O que você deseja fazer com esses dados?
+data_menu_string = """O que você deseja fazer?
             [a] Inserir
             [b] Listar
             [c] Excluir

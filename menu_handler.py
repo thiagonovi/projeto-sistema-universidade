@@ -8,7 +8,11 @@ def ultimate_menu_handler(answear1, answear2):
         elif answear2 == 'b':
             list_data(data)
         elif answear2 == 'c':
-            exclude_data(data) # to create
+            print("Em desenvolvimento")
+            # exclude_data(data) to create
+        elif answear2 == 'd':
+            print("Em desenvolvimento")
+            # alter_data(data) to create
     elif answear1 == 'b':
         data = "data/disciplina.json"
     elif answear1 == 'c':
