@@ -57,7 +57,7 @@ def insert_data_estudante(archive):
 def list_data(archive):
     clear()
     with open(archive) as f:
-        if len(f.read()) <= 1:
+        if len(f.read()) <= 3:
             print("Nenhum estudante listado no sistema")
         else:
             with open(archive) as f:
@@ -79,8 +79,9 @@ def exclude_data(archive):
     codigo = int(input(prompt))
     for index, objt in enumerate(data):
         if objt['codigo'] == codigo:
-            print(index)
-
+            del data[0]
+            with open(archive, "w") as f:
+                    json.dump(data, f, indent=2)
 
 
 
