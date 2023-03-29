@@ -12,7 +12,7 @@ while True:
         while True:
             answear2 = data_menu()
             if answear2 != 'e':
-                if answear2 in 'cd': 
+                if answear2 == 'd': 
                     clear()
                     print("Em Desenvolvimento")
                 else:

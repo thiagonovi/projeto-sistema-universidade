@@ -15,9 +15,17 @@ def insert_data_estudante(archive):
     new_student = json.loads(estudante_object_blank)
     data.append(new_student)
 
+    print("Qual o código do novo estudante?")
+    new_code = int(input(prompt))
+    data[len(data)-1]['codigo'] = new_code
+
     print("Qual o nome do novo estudante?")
     new_name = input(prompt)
     data[len(data)-1]['nome'] = new_name
+
+    print("Qual o CPF do novo estudante?")
+    new_cpf = input(prompt)
+    data[len(data)-1]['cpf'] = new_cpf
 
     print("Qual a idade no novo estudante?")
     new_age = input(prompt)
@@ -63,13 +71,19 @@ def list_data(archive):
                     i += 1
                 print("\n***************\n")
 
-def exclude_data(data):
+def exclude_data(archive):
     with open(archive) as f:
             data = json.load(f)
     
-    print("Qual o nome do estudante que você deseja excluir do sistema?")
-    nome = input(prompt)
-    print(data.index(f"'nome': '{nome}'"))
+    print("Qual o código do estudante que você deseja excluir do sistema?")
+    codigo = int(input(prompt))
+    for index, objt in enumerate(data):
+        if objt['codigo'] == codigo:
+            print(index)
+
+
+
+
 
 
 

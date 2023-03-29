@@ -38,7 +38,9 @@ estudante_blank = """
 
 estudante_object_blank = """
 {
+    "codigo": "",
     "nome": "",
+    "cpf": "",
     "idade": "",
     "curso": "",
     "telefone": "",
