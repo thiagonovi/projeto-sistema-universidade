@@ -71,17 +71,34 @@ def list_data(archive):
                     i += 1
                 print("\n***************\n")
 
-def exclude_data(archive):
+def exclude_data(archive, answear1):
     with open(archive) as f:
             data = json.load(f)
     
-    print("Qual o código do estudante que você deseja excluir do sistema?")
-    codigo = int(input(prompt))
-    for index, objt in enumerate(data):
-        if objt['codigo'] == codigo:
-            del data[0]
-            with open(archive, "w") as f:
-                    json.dump(data, f, indent=2)
+    if answear1 == 'a':
+        string1 = "do estudante"
+        string2 = "nenhum estudante"
+    print(f"Informe o código {string1} que você deseja excluir")
+    try:
+        codigo = int(input(prompt))
+    except ValueError:
+        clear()
+        print("Código inválido. Tente novamente, informando somente números")
+    else:
+        i = 0
+        for index, objt in enumerate(data):
+            if objt['codigo'] == codigo:
+                i += 1
+                del data[index]
+                with open(archive, "w") as f:
+                        json.dump(data, f, indent=2)
+                break
+        if i != 0:
+            clear()
+            print(f"Registro {string1} removido com sucesso")
+        else:
+            clear()
+            print(f"Não há {string2} com esse código no sistema")
 
 
 
