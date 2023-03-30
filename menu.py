@@ -7,7 +7,7 @@ def clear():
 def exit_menu():
     while True:
         print(confirmation_exit)
-        exit_answear = input(prompt)
+        exit_answear = input(prompt).lower()
         if exit_answear == 'a':
             exit()
         elif exit_answear == 'b':

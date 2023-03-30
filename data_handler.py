@@ -16,8 +16,13 @@ def insert_data_estudante(archive):
     data.append(new_student)
 
     print("Qual o código do novo estudante?")
-    new_code = int(input(prompt))
-    data[len(data)-1]['codigo'] = new_code
+    while True:
+        try:
+            new_code = int(input(prompt))
+            data[len(data)-1]['codigo'] = new_code
+            break
+        except ValueError:
+            print("Insira somente números nesta opção")
 
     print("Qual o nome do novo estudante?")
     new_name = input(prompt)
@@ -78,6 +83,7 @@ def exclude_data(archive, answear1):
     if answear1 == 'a':
         string1 = "do estudante"
         string2 = "nenhum estudante"
+        string3 = "este estudante"
     print(f"Informe o código {string1} que você deseja excluir")
     try:
         codigo = int(input(prompt))
@@ -88,19 +94,36 @@ def exclude_data(archive, answear1):
         i = 0
         for index, objt in enumerate(data):
             if objt['codigo'] == codigo:
-                i += 1
-                del data[index]
-                with open(archive, "w") as f:
-                        json.dump(data, f, indent=2)
+                i = 1
+
+                clear()
+                while True:
+                    print(f"É {string3} que deseja excluir? [s/n]")
+                    print("***************\n")
+                    for key, value in data[index].items():
+                        print(f"{key.capitalize()}: {value}")
+                    print("\n***************\n")
+                    resposta = input(prompt).lower()
+
+                    if resposta == 's':
+                        del data[index]
+                        with open(archive, "w") as f:
+                            json.dump(data, f, indent=2)
+                        clear()
+                        print(f"Registro {string1} removido com sucesso")
+                        break
+                    elif resposta == 'n':
+                        clear()
+                        print("Remoção não concluída.")
+                        break
+                    else:
+                        clear()
+                        print("Selecione uma opção válida.")
                 break
-        if i != 0:
-            clear()
-            print(f"Registro {string1} removido com sucesso")
-        else:
-            clear()
-            print(f"Não há {string2} com esse código no sistema")
-
-
+            if i == 0:
+                clear()
+                print(f"Não há {string2} com esse código.")
+        
 
 
 
