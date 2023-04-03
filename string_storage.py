@@ -67,7 +67,7 @@ professor_object_blank = """
     "nome": "",
     "cpf": "",
     "idade": "",
-    "disciplinas": "",
+    "disciplina": "",
     "telefone": "",
     "e-mail": "",
 }

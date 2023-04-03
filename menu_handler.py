@@ -4,7 +4,7 @@ def ultimate_menu_handler(answear1, answear2):
     if answear1 == 'a':
         data = "data/estudante.json"
         if answear2 == 'a':
-            insert_data_estudante(data)
+            insert_data(data)
         elif answear2 == 'b':
             list_data(data)
         elif answear2 == 'c':
