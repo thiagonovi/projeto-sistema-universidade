@@ -1,12 +1,12 @@
 import os, json
-from string_storage import prompt, estudante_blank, estudante_object_blank
+from string_storage import prompt, blank_data, estudante_object_blank
 from menu import clear
 
 
 def insert_data_estudante(archive):
     with open(archive) as f:
         if len(f.read()) <= 1:
-            data = json.loads(estudante_blank)
+            data = json.loads(blank_data)
             with open(archive, "w") as f:
                 json.dump(data, f, indent=2)
 
@@ -47,10 +47,6 @@ def insert_data_estudante(archive):
     print("Qual o e-mail do novo estudante?")
     new_email = input(prompt)
     data[len(data)-1]['e-mail'] = new_email
-
-    print("Qual a média no novo estudante?")
-    new_gpa = input(prompt)
-    data[len(data)-1]['media'] = new_gpa
 
 
     with open(archive, "w") as f:

@@ -27,7 +27,7 @@ confirmation_exit = """Tem certeza de que deseja sair?
 
 # json manipulation strings
 
-estudante_blank = """
+blank_data = """
 [
     
         
@@ -45,7 +45,37 @@ estudante_object_blank = """
     "curso": "",
     "telefone": "",
     "e-mail": "",
-    "media": ""
 }
 """
 
+disciplina_object_blank = """
+{
+    "codigo": "",
+    "nome": "",
+}
+"""
+
+matricula_objetc_blank = """
+{
+    "codigo": "",
+}
+"""
+
+professor_object_blank = """
+{
+    "codigo": "",
+    "nome": "",
+    "cpf": "",
+    "idade": "",
+    "disciplinas": "",
+    "telefone": "",
+    "e-mail": "",
+}
+"""
+
+turma_object_blank = """
+{
+    "codigo": "",
+    "alunos": "",
+}
+"""
