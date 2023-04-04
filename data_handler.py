@@ -54,6 +54,7 @@ def insert_data(data_type):
         new_email = input(prompt)
         data[len(data)-1]['e-mail'] = new_email
 
+
     elif data_type == 'b':
         archive = 'data/disciplina.json'
         object_blank = disciplina_object_blank 
@@ -131,6 +132,47 @@ def insert_data(data_type):
     elif data_type == 'd':
         archive = 'data/turma.json'
         object_blank = turma_object_blank
+        with open(archive) as f:
+            if len(f.read()) <= 1:
+                data = json.loads(blank_data)
+                with open(archive, "w") as f:
+                    json.dump(data, f, indent=2)
+
+        with open(archive) as f:
+            data = json.load(f)
+        new_data = json.loads(object_blank)
+        data.append(new_data)
+
+        print("Qual o código da nova turma?")
+        while True:
+            try:
+                new_code = int(input(prompt))
+                data[len(data)-1]['codigo'] = new_code
+                break
+            except ValueError:
+                print("Insira somente números nesta opção")
+
+        class_list = []
+        with open("data/estudante.json") as fe:
+            student_data = json.load(fe)
+        while True:
+            print("Digite o código do aluno que fará parte da nova turma (digite [q] para encerrar)")
+            new_student = int(input(prompt))
+            if new_student == 'q':
+                break
+            else:
+                for objt in student_data:
+                    if objt['codigo'] == new_student:
+                        class_list.append(new_student)
+                    else:
+                        print(f"Não consta no sistema um aluno com o código '{new_student}'. Deseja cadastrar um novo aluno? [y]/[n]")
+                        answear = input(prompt).lower()
+                        if answear == 'y':
+                            pass
+        data[len(data)-1]['alunos'] = class_list
+
+
+
     elif data_type == 'e':
         archive = 'data/matricula.json'
         object_blank = matricula_object_blank
