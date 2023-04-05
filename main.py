@@ -4,7 +4,7 @@ from menu_handler import ultimate_menu_handler
 clear()
 while True:
     answear1 = menu()
-    if answear1 in 'bcde':
+    if answear1 == 'e':
         clear()
         print("Em Desenvolvimento")
     else:

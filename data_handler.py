@@ -156,50 +156,93 @@ def insert_data(data_type):
         with open("data/estudante.json") as fe:
             student_data = json.load(fe)
         while True:
-            print("Digite o código do aluno que fará parte da nova turma (digite [q] para encerrar)")
-            new_student = int(input(prompt))
-            if new_student == 'q':
+            print("Digite o código do aluno que fará parte da nova turma (digite [0] para encerrar)")
+            while True:
+                try:
+                    new_student = int(input(prompt))
+                    break
+                except ValueError:
+                    print("Insira somente números nesta opção")
+            if new_student == 0:
                 break
             else:
-                for objt in student_data:
-                    if objt['codigo'] == new_student:
-                        class_list.append(new_student)
-                    else:
-                        print(f"Não consta no sistema um aluno com o código '{new_student}'. Deseja cadastrar um novo aluno? [y]/[n]")
-                        answear = input(prompt).lower()
-                        if answear == 'y':
-                            pass
+                if any(d.get('codigo') == new_student for d in student_data):
+                    class_list.append(new_student)
+                else:
+                    print(f"Não consta no sistema um aluno com o código '{new_student}'. Deseja cadastrar um novo aluno? [y]/[n]")
+                    answear = input(prompt).lower()
+                    if answear == 'y':
+                        insert_data('a')
         data[len(data)-1]['alunos'] = class_list
-
-
 
     elif data_type == 'e':
         archive = 'data/matricula.json'
         object_blank = matricula_object_blank
+        with open(archive) as f:
+            if len(f.read()) <= 1:
+                data = json.loads(blank_data)
+                with open(archive, "w") as f:
+                    json.dump(data, f, indent=2)
 
-    
+        with open(archive) as f:
+            data = json.load(f)
+        new_data = json.loads(object_blank)
+        data.append(new_data)
+
+        print("Qual o código da nova matrícula?")
+        while True:
+            try:
+                new_code = int(input(prompt))
+                data[len(data)-1]['codigo'] = new_code
+                break
+            except ValueError:
+                print("Insira somente números nesta opção")
+
+
     with open(archive, "w") as f:
         json.dump(data, f, indent=2)
 
     clear()
-    print("Estudante inserido no sistema com sucesso")
+    print("Novos dados adicionados ao sistema com sucesso")
 
-def list_data(archive):
+
+def list_data(data_type):
+    if data_type == 'a':
+        archive = "data/estudante.json"
+        string1 = "Nenhum estudante listado"
+        string2 = "Estudante"
+    elif data_type == 'b':
+        archive = "data/disciplina.json"
+        string1 = "Nenhuma disciplina listada"
+        string2 = "Disciplina"
+    elif data_type == 'c':
+        archive = "data/professor.json"
+        string1 = "Nenhum professor listado"
+        string2 = "Professor"
+    elif data_type == 'd':
+        archive = "data/turma.json"
+        string1 = "Nenhuma turma listada"
+        string2 = "Turma"
+    elif data_type == 'e':
+        archive = "data/matricula.json"
+        string1 = "Nenhuma matricula listada"
+        string2 = "Matrícula"
     clear()
     with open(archive) as f:
         if len(f.read()) <= 3:
-            print("Nenhum estudante listado no sistema")
+            print(f"{string1} no sistema")
         else:
             with open(archive) as f:
                 data = json.load(f)
                 i = 0
                 print("***************")
                 for estudantes in data:
-                    print(f"\nEstudante n. {i+1}\n")
+                    print(f"\n{string2} n. {i+1}\n")
                     for key, value in data[i].items():
                         print(f"{key.capitalize()}: {value}")
                     i += 1
                 print("\n***************\n")
+
 
 def exclude_data(archive, answear1):
     with open(archive) as f:

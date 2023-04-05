@@ -1,26 +1,16 @@
 from data_handler import *
 
 def ultimate_menu_handler(answear1, answear2):
-    if answear1 == 'a':
-        data = "data/estudante.json"
-        if answear2 == 'a':
-            insert_data(data)
-        elif answear2 == 'b':
-            list_data(data)
-        elif answear2 == 'c':
-            #print("Em desenvolvimento")
-            exclude_data(data, answear1) 
-        elif answear2 == 'd':
-            print("Em desenvolvimento")
-            # alter_data(data) to create
-    elif answear1 == 'b':
-        data = "data/disciplina.json"
-    elif answear1 == 'c':
-        data = "data/professor.json"
-    elif answear1 == 'd':
-        data = "data/turma.json"
-    elif answear1 == 'e':
-        data = "data/matricula.json"
+    if answear2 == 'a':
+        insert_data(answear1)
+    elif answear2 == 'b':
+        list_data(answear1)
+    elif answear2 == 'c':
+        #print("Em desenvolvimento")
+        exclude_data(data, answear1) 
+    elif answear2 == 'd':
+        print("Em desenvolvimento")
+        # alter_data(data) to create
     
 
 

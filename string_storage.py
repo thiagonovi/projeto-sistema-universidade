@@ -44,20 +44,20 @@ estudante_object_blank = """
     "idade": "",
     "curso": "",
     "telefone": "",
-    "e-mail": "",
+    "e-mail": ""
 }
 """
 
 disciplina_object_blank = """
 {
     "codigo": "",
-    "nome": "",
+    "nome": ""
 }
 """
 
-matricula_objetc_blank = """
+matricula_object_blank = """
 {
-    "codigo": "",
+    "codigo": ""
 }
 """
 
@@ -69,13 +69,13 @@ professor_object_blank = """
     "idade": "",
     "disciplina": "",
     "telefone": "",
-    "e-mail": "",
+    "e-mail": ""
 }
 """
 
 turma_object_blank = """
 {
     "codigo": "",
-    "alunos": "",
+    "alunos": ""
 }
 """
