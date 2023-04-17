@@ -57,7 +57,8 @@ disciplina_object_blank = """
 
 matricula_object_blank = """
 {
-    "codigo": ""
+    "codigo": "",
+    "aluno": ""
 }
 """
 
@@ -76,6 +77,8 @@ professor_object_blank = """
 turma_object_blank = """
 {
     "codigo": "",
+    "professor": "",
+    "disciplina": "",
     "alunos": ""
 }
 """

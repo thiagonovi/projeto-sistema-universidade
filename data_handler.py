@@ -2,6 +2,95 @@ import os, json
 from string_storage import prompt, blank_data, estudante_object_blank, disciplina_object_blank, matricula_object_blank, professor_object_blank, turma_object_blank
 from menu import clear
 
+def strings(data_type):
+    global data_nome, do_dataType, um_dataType, um_novo_dataType, do_novo_dataType, este_dataType
+    if data_type == 'a':
+        data_nome = 'estudante'
+        do_dataType = 'do estudante'
+        um_dataType = 'um estudante'
+        um_novo_dataType = 'um novo estudante'
+        do_novo_dataType = 'do novo estudante'
+        este_dataType = "este estudante"
+    elif data_type == 'b':
+        data_nome = 'disciplina'
+        do_dataType = 'da disciplina'
+        um_dataType = 'uma disciplina'
+        um_novo_dataType = 'uma nova disciplina'
+        do_novo_dataType = 'da nova disciplina'
+        este_dataType = "esta disciplina"
+    elif data_type == 'c':
+        data_nome = 'professor'
+        do_dataType = 'do professor'
+        um_dataType = 'um professor'
+        um_novo_dataType = 'um novo professor'
+        do_novo_dataType = 'do novo professor'
+        este_dataType = "este professor"
+    elif data_type == 'd':
+        data_nome = 'turma'
+        do_dataType = 'da turma'
+        um_dataType = 'uma turma'
+        um_novo_dataType = 'uma nova turma'
+        do_novo_dataType = 'da nova turma'
+        este_dataType = "esta turma"
+    elif data_type == 'e':
+        data_nome = 'matrícula'
+        do_dataType = 'da matrícula'
+        um_dataType = 'uma matrícula'
+        um_novo_dataType = 'uma nova matrícula'
+        do_novo_dataType = 'da nova matrícula'
+        este_dataType = "esta matrícula"
+
+def arquivo_novo(archive, blank_data):
+    with open(archive) as f:
+        if len(f.read()) <= 3:
+            data = json.loads(blank_data)
+            with open(archive, "w") as f:
+                json.dump(data, f, indent=2)
+
+def add_novo_dado_vazio(archive, object_blank):
+    with open(archive) as f:
+        data = json.load(f)
+    new_data = json.loads(object_blank)
+    data.append(new_data)
+    return data
+
+def add_codigo(arg):
+    print("Qual o código do novo estudante?")
+    while True:
+        try:
+            new_code = int(input(prompt))
+            data[len(data)-1]['codigo'] = new_code
+            break
+        except ValueError:
+            print("Insira somente números nesta opção")
+
+   
+
+def add_dados_relacionados(archive, data_type):
+    strings(data_type)
+
+    with open(archive) as f:
+        data = json.load(f)
+    while True:
+        print(f"Digite o código {do_dataType} d{este_dataType}")
+        while True:
+            try:
+                new_data = int(input(prompt))
+                break
+            except ValueError:
+                print("Insira somente números nesta opção")
+        if any(d.get('codigo') == new_data for d in data):
+            break
+        else:
+            print(f"Não consta no sistema {um_dataType} com o código '{new_data}'. Deseja cadastrar {um_novo_dataType}? [s]/[n]")
+            answear = input(prompt).lower()
+            if answear == 's':
+                insert_data(data_code)
+                break
+    data[len(data)-1][data_type] = data
+
+
+
 
 def insert_data(data_type):
 
@@ -10,16 +99,8 @@ def insert_data(data_type):
         archive = 'data/estudante.json'
         object_blank = estudante_object_blank
 
-        with open(archive) as f:
-            if len(f.read()) <= 1:
-                data = json.loads(blank_data)
-                with open(archive, "w") as f:
-                    json.dump(data, f, indent=2)
-
-        with open(archive) as f:
-            data = json.load(f)
-        new_data = json.loads(object_blank)
-        data.append(new_data)
+        arquivo_novo(archive, blank_data)
+        data = add_novo_dado_vazio(archive, object_blank)
 
         print("Qual o código do novo estudante?")
         while True:
@@ -58,16 +139,9 @@ def insert_data(data_type):
     elif data_type == 'b':
         archive = 'data/disciplina.json'
         object_blank = disciplina_object_blank 
-        with open(archive) as f:
-            if len(f.read()) <= 1:
-                data = json.loads(blank_data)
-                with open(archive, "w") as f:
-                    json.dump(data, f, indent=2)
 
-        with open(archive) as f:
-            data = json.load(f)
-        new_data = json.loads(object_blank)
-        data.append(new_data)
+        arquivo_novo(archive, blank_data)
+        data = add_novo_dado_vazio(archive, object_blank)
 
         print("Qual o código da nova disciplina?")
         while True:
@@ -85,16 +159,9 @@ def insert_data(data_type):
     elif data_type == 'c':
         archive = 'data/professor.json'
         object_blank = professor_object_blank
-        with open(archive) as f:
-            if len(f.read()) <= 1:
-                data = json.loads(blank_data)
-                with open(archive, "w") as f:
-                    json.dump(data, f, indent=2)
 
-        with open(archive) as f:
-            data = json.load(f)
-        new_data = json.loads(object_blank)
-        data.append(new_data)
+        arquivo_novo(archive, blank_data)
+        data = add_novo_dado_vazio(archive, object_blank)
 
         print("Qual o código do novo professor?")
         while True:
@@ -129,19 +196,14 @@ def insert_data(data_type):
         new_email = input(prompt)
         data[len(data)-1]['e-mail'] = new_email
 
+
+
     elif data_type == 'd':
         archive = 'data/turma.json'
         object_blank = turma_object_blank
-        with open(archive) as f:
-            if len(f.read()) <= 1:
-                data = json.loads(blank_data)
-                with open(archive, "w") as f:
-                    json.dump(data, f, indent=2)
 
-        with open(archive) as f:
-            data = json.load(f)
-        new_data = json.loads(object_blank)
-        data.append(new_data)
+        arquivo_novo(archive, blank_data)
+        data = add_novo_dado_vazio(archive, object_blank)
 
         print("Qual o código da nova turma?")
         while True:
@@ -151,6 +213,14 @@ def insert_data(data_type):
                 break
             except ValueError:
                 print("Insira somente números nesta opção")
+
+        arquivo_novo("data/professor.json", blank_data)
+        add_dados_relacionados('data/professor.json', 'professor')
+
+        arquivo_novo('data/disciplina.json', blank_data)
+        add_dados_relacionados('data/disciplina.json', 'disciplina')
+
+        arquivo_novo('data/estudante.json', blank_data)
 
         class_list = []
         with open("data/estudante.json") as fe:
@@ -169,25 +239,18 @@ def insert_data(data_type):
                 if any(d.get('codigo') == new_student for d in student_data):
                     class_list.append(new_student)
                 else:
-                    print(f"Não consta no sistema um aluno com o código '{new_student}'. Deseja cadastrar um novo aluno? [y]/[n]")
+                    print(f"Não consta no sistema um aluno com o código '{new_student}'. Deseja cadastrar um novo aluno? [s]/[n]")
                     answear = input(prompt).lower()
-                    if answear == 'y':
+                    if answear == 's':
                         insert_data('a')
         data[len(data)-1]['alunos'] = class_list
 
     elif data_type == 'e':
         archive = 'data/matricula.json'
         object_blank = matricula_object_blank
-        with open(archive) as f:
-            if len(f.read()) <= 1:
-                data = json.loads(blank_data)
-                with open(archive, "w") as f:
-                    json.dump(data, f, indent=2)
 
-        with open(archive) as f:
-            data = json.load(f)
-        new_data = json.loads(object_blank)
-        data.append(new_data)
+        arquivo_novo(archive, blank_data)
+        data = add_novo_dado_vazio(archive, object_blank)
 
         print("Qual o código da nova matrícula?")
         while True:
@@ -198,6 +261,8 @@ def insert_data(data_type):
             except ValueError:
                 print("Insira somente números nesta opção")
 
+        add_dados_relacionados('data/estudante.json', 'aluno')
+
 
     with open(archive, "w") as f:
         json.dump(data, f, indent=2)
@@ -207,91 +272,152 @@ def insert_data(data_type):
 
 
 def list_data(data_type):
-    if data_type == 'a':
-        archive = "data/estudante.json"
-        string1 = "Nenhum estudante listado"
-        string2 = "Estudante"
-    elif data_type == 'b':
-        archive = "data/disciplina.json"
-        string1 = "Nenhuma disciplina listada"
-        string2 = "Disciplina"
-    elif data_type == 'c':
-        archive = "data/professor.json"
-        string1 = "Nenhum professor listado"
-        string2 = "Professor"
-    elif data_type == 'd':
-        archive = "data/turma.json"
-        string1 = "Nenhuma turma listada"
-        string2 = "Turma"
-    elif data_type == 'e':
-        archive = "data/matricula.json"
-        string1 = "Nenhuma matricula listada"
-        string2 = "Matrícula"
+    strings(data_type)
+
     clear()
     with open(archive) as f:
         if len(f.read()) <= 3:
-            print(f"{string1} no sistema")
+            print(f"Não há nenh{um_dataType} com esse código.")
         else:
             with open(archive) as f:
                 data = json.load(f)
                 i = 0
                 print("***************")
                 for estudantes in data:
-                    print(f"\n{string2} n. {i+1}\n")
+                    print(f"\n{data_nome} n. {i+1}\n")
                     for key, value in data[i].items():
                         print(f"{key.capitalize()}: {value}")
                     i += 1
                 print("\n***************\n")
 
 
-def exclude_data(archive, answear1):
+def exclude_data(answear1):
+    strings(answear1)
+
     with open(archive) as f:
-            data = json.load(f)
-    
-    if answear1 == 'a':
-        string1 = "do estudante"
-        string2 = "nenhum estudante"
-        string3 = "este estudante"
-    print(f"Informe o código {string1} que você deseja excluir")
-    try:
-        codigo = int(input(prompt))
-    except ValueError:
-        clear()
-        print("Código inválido. Tente novamente, informando somente números")
-    else:
-        i = 0
-        for index, objt in enumerate(data):
-            if objt['codigo'] == codigo:
-                i = 1
-
+        if len(f.read()) <= 3:
+            clear()
+            print(f"Não há nenh{um_dataType} cadastrado no sistema")
+        else:
+            with open(archive) as f:
+                data = json.load(f)
+            print(f"Informe o código {do_dataType} que você deseja excluir")
+            try:
+                codigo = int(input(prompt))
+            except ValueError:
                 clear()
+                print("Código inválido. Tente novamente, informando somente números")
+            i = 0
+            for index, objt in enumerate(data):
+                if objt['codigo'] == codigo:
+                    i = 1
+
+                    clear()
+                    while True:
+                        print(f"É {este_dataType} que deseja excluir? [s/n]")
+                        print("***************\n")
+                        for key, value in data[index].items():
+                            print(f"{key.capitalize()}: {value}")
+                        print("\n***************\n")
+                        resposta = input(prompt).lower()
+
+                        if resposta == 's':
+                            del data[index]
+                            with open(archive, "w") as f:
+                                json.dump(data, f, indent=2)
+                            clear()
+                            print(f"Registro {do_dataType} removido com sucesso")
+                            break
+                        elif resposta == 'n':
+                            clear()
+                            print("Remoção não concluída.")
+                            break
+                        else:
+                            clear()
+                            print("Selecione uma opção válida.")
+                    break
+                if i == 0:
+                    clear()
+                    print(f"Não há nenh{um_dataType} com esse código.")
+
+def edit_data(answear1):
+    letras = 'ABCDEFG'
+    strings(answear1)
+
+    with open(archive) as f:
+        if len(f.read()) <= 3:
+            clear()
+            print(f"Não há nenh{um_dataType} cadastrado no sistema")
+        else:
+            with open(archive) as f:
+                data = json.load(f)
+             
+                print(f"Insira o código {do_dataType} que deseja editar:")
                 while True:
-                    print(f"É {string3} que deseja excluir? [s/n]")
-                    print("***************\n")
-                    for key, value in data[index].items():
-                        print(f"{key.capitalize()}: {value}")
-                    print("\n***************\n")
-                    resposta = input(prompt).lower()
+                    try:
+                        codigo = int(input(prompt))
+                        break
+                    except ValueError: 
+                        print("Código inválido. Informe somente números")
+                i = 0
+                for index, objt in enumerate(data):
+                    if objt['codigo'] == codigo:
+                        i = 1
+                        clear()
+                        while True:
+                            print(f"É {este_dataType} que deseja editar? [s/n]")
+                            print("***************\n")
+                            for key, value in data[index].items():
+                                print(f"{key.capitalize()}: {value}")
+                            print("\n***************\n")
+                            resposta = input(prompt).lower()
 
-                    if resposta == 's':
-                        del data[index]
-                        with open(archive, "w") as f:
-                            json.dump(data, f, indent=2)
-                        clear()
-                        print(f"Registro {string1} removido com sucesso")
-                        break
-                    elif resposta == 'n':
-                        clear()
-                        print("Remoção não concluída.")
-                        break
-                    else:
-                        clear()
-                        print("Selecione uma opção válida.")
-                break
-            if i == 0:
-                clear()
-                print(f"Não há {string2} com esse código.")
-        
+                            if resposta == 's':
+                                while True:
+                                    print("Selecione a informação que deseja editar:")
+                                    for key, letra in zip(data[index], letras):
+                                        print(f"[{letra}] {key.capitalize()}")
+                                    key = list(data[index])[letras.index(input(prompt).upper())]
+                                    print("Adicione a nova informação:")
+                                    if key == 'codigo':
+                                        while True:
+                                            try:
+                                                nova_info = int(input(prompt))
+                                                break
+                                            except ValueError:
+                                                print("Insira somente números nesta opção")
+                                    else:
+                                        nova_info = input(prompt)
+
+                                    data[index][key] = nova_info
+
+                                    with open(archive, "w") as f:
+                                        json.dump(data, f, indent=2)
+
+                                    clear()
+                                    print(f"Edição concluída. Deseja editar outra informação d{este_dataType}? [s]/[n]")
+                                    resposta_final = input(prompt)
+                                    if resposta_final == 's':
+                                        pass
+                                    elif resposta_final == 'n':
+                                        clear()
+                                        print("Edição finalizada com sucesso.")
+                                        break
+                                break
+                                        
+
+                            elif resposta == 'n':
+                                clear()
+                                print("Edição não concluída.")
+                                break
+                            else:
+                                clear()
+                                print("Selecione uma opção válida.")
+                if i == 0:
+                    print(f"Não consta no sistema {um_dataType} com o código '{codigo}'. Deseja cadastrar {um_novo_dataType}? [s]/[n]")
+                    answear = input(prompt).lower()
+                    if answear == 's':
+                        insert_data(answear1)
 
 
 

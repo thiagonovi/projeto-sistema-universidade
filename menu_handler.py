@@ -6,12 +6,10 @@ def ultimate_menu_handler(answear1, answear2):
     elif answear2 == 'b':
         list_data(answear1)
     elif answear2 == 'c':
-        #print("Em desenvolvimento")
-        exclude_data(data, answear1) 
+        exclude_data(answear1) 
     elif answear2 == 'd':
-        print("Em desenvolvimento")
-        # alter_data(data) to create
-    
+        edit_data(answear1)
+   
 
 
 

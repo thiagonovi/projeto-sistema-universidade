@@ -6,34 +6,6 @@
     "idade": "a",
     "curso": "a",
     "telefone": "a",
-    "e-mail": "a",
-    "media": "a"
-  },
-  {
-    "codigo": 5,
-    "nome": "a",
-    "cpf": "a",
-    "idade": "a",
-    "curso": "a",
-    "telefone": "a",
-    "e-mail": "a"
-  },
-  {
-    "codigo": 2,
-    "nome": "b",
-    "cpf": "b",
-    "idade": "b",
-    "curso": "b",
-    "telefone": "b",
-    "e-mail": "b"
-  },
-  {
-    "codigo": 4,
-    "nome": "a",
-    "cpf": "a",
-    "idade": "a",
-    "curso": "a",
-    "telefone": "a",
     "e-mail": "a"
   }
 ]
