@@ -78,7 +78,6 @@ turma_object_blank = """
 {
     "codigo": "",
     "professor": "",
-    "disciplina": "",
-    "alunos": ""
+    "disciplina": ""
 }
 """

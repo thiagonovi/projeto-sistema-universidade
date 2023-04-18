@@ -1,1 +1,29 @@
-
+[
+  {
+    "codigo": 1,
+    "nome": "a",
+    "cpf": "a",
+    "idade": "a",
+    "curso": "a",
+    "telefone": "a",
+    "e-mail": "a"
+  },
+  {
+    "codigo": 2,
+    "nome": "f",
+    "cpf": "w",
+    "idade": "a",
+    "curso": "a",
+    "telefone": "a",
+    "e-mail": "a"
+  },
+  {
+    "codigo": 6,
+    "nome": "a",
+    "cpf": "a",
+    "idade": "a",
+    "curso": "a",
+    "telefone": "a",
+    "e-mail": "a"
+  }
+]

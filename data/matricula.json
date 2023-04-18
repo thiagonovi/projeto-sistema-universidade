@@ -1,1 +1,14 @@
-
+[
+  {
+    "codigo": 1,
+    "aluno": 1
+  },
+  {
+    "codigo": 2,
+    "aluno": 3
+  },
+  {
+    "codigo": 3,
+    "aluno": 1
+  }
+]

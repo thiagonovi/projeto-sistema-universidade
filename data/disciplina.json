@@ -1,1 +1,10 @@
-
+[
+  {
+    "codigo": 1,
+    "nome": "Filosofia"
+  },
+  {
+    "codigo": 2,
+    "nome": "Artes Pl\u00e1sticas"
+  }
+]
